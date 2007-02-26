@@ -1,0 +1,4 @@
+category: Graphics
+requires: cygwin libmng1 gtk2-x11 libSDL12 libX11_6 libXext6 libXm2 libXt6
+sdesc: "MNG graphics library (viewers)"
+ldesc: "Multiple-image Network Graphics (i.e. animated PNG/JNG) library"

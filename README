@@ -5,12 +5,12 @@ Multiple-image Network Graphics (i.e. animated PNG/JNG) library
 Runtime requirements:
   cygwin-1.5.24-2
   libjpeg62-6b-12
-  liblcms1-1.16-1
+  liblcms1-1.16-2
   zlib-1.2.3-2
 (gmngview)
-  gdk-pixbuf2-2.10.9-1
-  glib2-2.12.9-1
-  gtk2-x11-2.10.9-1
+  gdk-pixbuf2-2.10.13-1
+  glib2-2.12.12-2
+  gtk2-x11-2.10.13-1
 (mngplay)
   libSDL12-1.2.11-1
 (xmngview)
@@ -25,7 +25,7 @@ Build requirements:
   autoconf2.5-2.61-1
   automake1.10-1.10-1
   binutils-20060817-1
-  cygport-0.2.10-1
+  cygport-0.3.5-1
   gawk-3.1.5-4
   gcc-core-3.4.4-3
   libtool1.5-1.5.23a-2
@@ -42,17 +42,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack libmng-1.0.9-X-src.tar.bz2
+  unpack libmng-1.0.10-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./libmng-1.0.9-X.cygport all
+  cygport ./libmng-1.0.10-X.cygport all
 
 This will create:
-  /usr/src/libmng-1.0.9-X-src.tar.bz2
-  /usr/src/libmng-1.0.9-X.tar.bz2
-  /usr/src/libmng-devel-1.0.9-X.tar.bz2
-  /usr/src/libmng1-1.0.9-X.tar.bz2
+  /usr/src/libmng-1.0.10-X-src.tar.bz2
+  /usr/src/libmng-1.0.10-X.tar.bz2
+  /usr/src/libmng-devel-1.0.10-X.tar.bz2
+  /usr/src/libmng1-1.0.10-X.tar.bz2
 
 -------------------------------------------
 
@@ -63,15 +63,15 @@ Files included in the binary packages:
   /usr/bin/mngplay.exe
   /usr/bin/mngtree.exe
   /usr/bin/xmngview.exe
-  /usr/share/doc/Cygwin/libmng-1.0.9.README
-  /usr/share/doc/libmng-1.0.9/Changes
-  /usr/share/doc/libmng-1.0.9/LICENSE
-  /usr/share/doc/libmng-1.0.9/Plan1.png
-  /usr/share/doc/libmng-1.0.9/Plan2.png
-  /usr/share/doc/libmng-1.0.9/README
-  /usr/share/doc/libmng-1.0.9/doc.readme
-  /usr/share/doc/libmng-1.0.9/libmng.txt
-  /usr/share/doc/libmng-1.0.9/linux.mng
+  /usr/share/doc/Cygwin/libmng-1.0.10.README
+  /usr/share/doc/libmng-1.0.10/Changes
+  /usr/share/doc/libmng-1.0.10/LICENSE
+  /usr/share/doc/libmng-1.0.10/Plan1.png
+  /usr/share/doc/libmng-1.0.10/Plan2.png
+  /usr/share/doc/libmng-1.0.10/README
+  /usr/share/doc/libmng-1.0.10/doc.readme
+  /usr/share/doc/libmng-1.0.10/libmng.txt
+  /usr/share/doc/libmng-1.0.10/linux.mng
   /usr/share/man/man3/libmng.3.gz
   /usr/share/man/man5/jng.5.gz
   /usr/share/man/man5/mng.5.gz
@@ -90,6 +90,9 @@ Files included in the binary packages:
 ------------------
 
 Port Notes:
+
+----- version 1.0.10-1 -----
+Version bump.
 
 ----- version 1.0.9-2 -----
 Unofficial re-release.  Last official release was 1.0.9-1.

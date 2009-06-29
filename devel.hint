@@ -1,5 +1,5 @@
 category: Graphics
-requires: cygwin libjpeg-devel liblcms-devel zlib
+requires: libjpeg-devel liblcms-devel zlib
 external-source: libmng
 sdesc: "MNG graphics library (development)"
 ldesc: "Multiple-image Network Graphics (i.e. animated PNG/JNG) library"

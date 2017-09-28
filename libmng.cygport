@@ -1,0 +1,94 @@
+# Adapted from Cygwin Ports project: http://cygwinports.dotsrc.org/
+
+inherit utils
+
+NAME="libmng"
+VERSION=2.0.3
+RELEASE=1
+CATEGORY="Graphics"
+SUMMARY="A library of functions for manipulating MNG format files"
+DESCRIPTION="libmng is a library for reading, writing, displaying and examing
+Multiple-Image Network Graphics. MNG is the animation extension to the
+popular PNG image-format."
+HOMEPAGE="http://www.libmng.com/"
+SRC_URI="mirror://sourceforge/libmng/libmng-${VERSION}.tar.gz"
+
+# Build dependencies only
+DEPEND="libXm-devel"
+
+
+PKG_NAMES="${PN} ${PN}2 ${PN}-devel ${PN}-contrib"
+libmng_SUMMARY="${SUMMARY} (utilities)"
+libmng_CONTENTS="
+  usr/bin/mngtree.exe
+  usr/share/doc/
+  usr/share/man/man5/
+"
+libmng2_CATEGORY="${CATEGORY} Libs"
+libmng2_SUMMARY="${SUMMARY} (runtime)"
+libmng2_CONTENTS="
+  usr/bin/cygmng-2.dll
+"
+libmng_devel_CATEGORY="${CATEGORY} Devel Libs"
+libmng_devel_SUMMARY="${SUMMARY} (development)"
+libmng_devel_REQUIRES="libjpeg-devel liblcms2-devel zlib-devel"
+libmng_devel_CONTENTS="
+  usr/include/
+  usr/lib/
+  usr/share/man/man3/
+"
+libmng_contrib_SUMMARY="${SUMMARY} (contrib)"
+libmng_contrib_CONTENTS="
+  usr/bin/*view.exe
+  usr/bin/mngplay.exe
+"
+
+# first argument must be binary to be linked
+mylink() {
+	verbose ./libtool --tag=CC --mode=link gcc ${CFLAGS} ${LDFLAGS} -I${S} -o "${@}" libmng.la
+}
+
+src_compile() {
+	lndirs
+	cd ${B}
+	ln -sf makefiles/{Makefile.am,configure.in} .
+	cygautoreconf
+	CYGCONF_SOURCE=. cygconf \
+		--with-jpeg=/usr --with-lcms2=/usr --with-zlib=/usr
+	cygmake LDFLAGS='-no-undefined'
+
+	mylink mngtree.exe ${S}/contrib/gcc/mngtree/mngtree.c
+
+	if check_pkg_config GTK gtk+-2.0
+	then
+		mylink gmngview.exe ${S}/contrib/gcc/gtk-mng-view/*.c ${GTK_CFLAGS} ${GTK_LIBS}
+	fi
+
+	if check_pkg_config SDL sdl
+	then
+		mylink mngplay.exe ${S}/contrib/gcc/sdl-mngplay/mngplay.c ${SDL_CFLAGS} ${SDL_LIBS}
+	fi
+
+	mylink xmngview.exe ${S}/contrib/gcc/xmngview/*.c -lXm -lXt -lXext -lX11
+}
+
+src_test() {
+	:
+}
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	for x in gmngview.exe mngplay.exe mngtree.exe xmngview.exe
+	do
+		if [ -f ${x} ]
+		then
+			verbose ./libtool --mode=install /usr/bin/install ${x} ${D}/usr/bin
+		fi
+	done
+
+	dodoc ${S}/doc/*.* ${S}/contrib/gcc/gtk-mng-view/linux.mng
+}
+
+DOCS="README.autoconf README.config README.contrib README.dll README.examples README.packaging"

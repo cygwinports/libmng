@@ -1,5 +1,0 @@
-category: Graphics
-requires: libjpeg62 liblcms1 zlib
-external-source: libmng
-sdesc: "MNG graphics library (runtime)"
-ldesc: "Multiple-image Network Graphics (i.e. animated PNG/JNG) library"
